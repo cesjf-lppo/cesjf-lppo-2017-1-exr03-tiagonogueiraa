@@ -25,24 +25,18 @@
     </head>
     <body class="container">
         <h1>Novo visitante</h1>
-	<p><form class="form-inline" method="post">
+	<p>
+	<form class="form-inline" method="post">
 	    <div class="form-group">
 	    <label for="exampleInputName" >Nome:</label>
 	    <input type="text" class="form-control" id="exampleInputName2" placeholder="Nome" name="nome" value="" size="50" />
-	    </div>
-	    <div class="form-group">
-	<label>Idade:</label>
-	<input type="number" name="idade" />
-	
-	</form>
-	  <p><form class="form-inline" method="post">
-            <div class="form-group">
-            <label for="exampleInputName">Nome:</label>
-            <input type="text" class="form-control" id="exampleInputName2" placeholder="Nome" name="nome" size="50">
-            </div><br><br>
-            <div class="form-group">
-                <label for="exampleInputName2">Email: </label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="Email" name="email" size="50">
 	    </div><br><br>
+	    
+	    <div class="form-group">
+	<label for="exampleInputName" >Idade:</label>
+	<input type="number" class="form-control" id="exampleInputName2" placeholder="Idade" name="idade" /><br><br>
+	 <input class="btn btn-default" type="submit" value="Gravar"/>
+	</form></p>
+	  
     </body>
 </html>
