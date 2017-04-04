@@ -23,7 +23,7 @@
 		    <th>Saida</th>
 		</tr>
 	    </thead>
-	    <c:forEach var="visitante" item="${visitantes}">
+	    <c:forEach var="visitante" items="${visitantes}">
 	    <tbody>
 		<tr>
 		    <td>${visitante.id}</td>
