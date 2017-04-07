@@ -26,17 +26,17 @@
 	    <c:forEach var="visitante" items="${visitantes}">
 	    <tbody>
 		<tr>
-		    <td>${visitante.id}</td>
+		    <td><a href="editaReclamacao.html?id=${visitante.id}">${visitante.id}</td> 
+		  
 		    <td>${visitante.nome}</td>
 		    <td>${visitante.idade}</td>
 		    <td>${visitante.entrada}</td>
 		    <td>${visitante.saida}</td>
-		    <td>
-			<form method="post">
+		    <td><a href="Saida.html?id=${visitante.id}">Saida</td>
+			<%--<form method="post">
 			<input type="hidden" value="${visitante.id}" name="id" />
 			<input type="submit" value="Sair" name="sair" />
-			</form>
-			</td>
+			</form>--%>
 		</tr>
 	    </c:forEach>
 	    </tbody>

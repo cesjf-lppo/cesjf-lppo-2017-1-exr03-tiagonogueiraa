@@ -31,6 +31,7 @@
 		    <td>${visitante.idade}</td>
 		    <td>${visitante.entrada}</td>
 		    <td>${visitante.saida}</td>
+		    <td><a href="ExcluiVisitante.html?id=${visitante.id}">X</a></td>	
 		</tr>
 	    </c:forEach>
 	    </tbody>

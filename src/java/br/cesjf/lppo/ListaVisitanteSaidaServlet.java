@@ -5,7 +5,6 @@
  */
 package br.cesjf.lppo;
 
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,48 +28,63 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ListaVisitanteSaidaServlet", urlPatterns = {"/ListaSaida.html"})
 public class ListaVisitanteSaidaServlet extends HttpServlet {
 
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 	//criar lista
 	List<Visitante> visitantes = new ArrayList<>();
-	
+
 	//pegar os dados do banco
 	try {
 	    //configurando conexao
 	    Class.forName("org.apache.derby.jdbc.ClientDriver");
-	    Connection conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/lppo-2017-1", "usuario" , "senha");
+	    Connection conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/lppo-2017-1", "usuario", "senha");
 	    Statement operacao = conexao.createStatement();
 	    ResultSet resultado = operacao.executeQuery("SELECT * FROM visitante WHERE saida IS NULL");
 
-	    while(resultado.next()){
+	    while (resultado.next()) {
 		Visitante v = new Visitante();
 		v.setId(resultado.getLong("id"));
 		v.setNome(resultado.getString("nome"));
 		v.setIdade(resultado.getInt("idade"));
 		v.setEntrada(resultado.getDate("entrada"));
 		v.setSaida(resultado.getDate("saida"));
-		visitantes.add(v);	
-		
+		visitantes.add(v);
+
+		request.setAttribute("visitantes", visitantes);
+		request.getRequestDispatcher("WEB-INF/ListaSaida.jsp").forward(request, response);
 	    }
-    }	catch (ClassNotFoundException ex) {
+	} catch (ClassNotFoundException ex) {
 	    Logger.getLogger(ListaVisitanteSaidaServlet.class.getName()).log(Level.SEVERE, null, ex);
 	} catch (SQLException ex) {
 	    Logger.getLogger(ListaVisitanteSaidaServlet.class.getName()).log(Level.SEVERE, null, ex);
 	}
-    request.setAttribute("visitantes", visitantes);
-    request.getRequestDispatcher("WEB-INF/ListaSaida.jsp").forward(request, response);
     }
-    
-  
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	
-	Long id = 
-    
-
-    }
-    }
-
+}
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+//	    throws ServletException, IOException {
+//
+//	//pegar os parametros
+//	Long id = Long.parseLong(request.getParameter("id"));
+//
+//	//excluir os registros e pegar os dados do banco
+//	try {
+//	    Class.forName("org.apache.derby.jdbc.ClientDriver");
+//	    Connection conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/lppo-2017-1");
+//	    Statement operacao = conexao.createStatement();
+//	    operacao.executeUpdate("UPDATE visitante SET saida=CURRENT_TIMESTAMP WHERE id=" +id);
+//
+//	    
+//
+////	} 
+//	  catch (ClassNotFoundException ex) {
+//	    Logger.getLogger(ListaVisitanteSaidaServlet.class.getName()).log(Level.SEVERE, null, ex);
+//	} catch (SQLException ex) {
+//	    Logger.getLogger(ListaVisitanteSaidaServlet.class.getName()).log(Level.SEVERE, null, ex);
+//	}
+//	
+////	response.sendRedirect("lista.html");
+//
+//    }
+//
